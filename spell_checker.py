@@ -45,22 +45,16 @@ def spell_check(word):
     else:
         return "Correct spelling."
 
-# Streamlit app
+
 def main():
-    st.title("Spell Checker App")
+    st.title("Aneesha's Spell Checker App")
+    st.text("Happy to have you here!")
+
+    user_input = st.text_area("Enter your text for spell checking:", "")
     
-    # Input text from the user
-    user_input = st.text_area("Enter text for spell checking:", "")
-    
-    # Button to initiate spell checking
     if st.button("Check Spelling"):
-        # Tokenize the input text
         tokens = words(user_input)
-        
-        # Perform spell check for each token
         suggestions = [spell_check(token) for token in tokens]
-        
-        # Display the results
         st.markdown("### Spell Check Results:")
         for i, (token, suggestion) in enumerate(zip(tokens, suggestions)):
             st.text(f"{i + 1}. {token}: {suggestion}")
